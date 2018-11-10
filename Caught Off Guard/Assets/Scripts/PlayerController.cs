@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
         float horizontalInput = Input.GetAxis(horizontalName) * movementSpeed;
 
         Vector3 fowardMovement = Vector3.Normalize(Vector3.ProjectOnPlane(camera.transform.forward, xzPlaneNormal)) * verticalInput;
-        Vector3 rightMovement = transform.right * horizontalInput;
+        Vector3 rightMovement = camera.transform.right * horizontalInput;
 
         charController.SimpleMove(fowardMovement + rightMovement);
     }
