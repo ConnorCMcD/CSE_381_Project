@@ -18,11 +18,30 @@ public class CameraController : MonoBehaviour {
     }
 
     void FixedUpdate() {
+        //Keyboard controls
         float revolveHorizontal = Input.GetAxis("CameraHorizontal");
         float revolveVertical = Input.GetAxis("CameraVertical");
 
         offset = Quaternion.AngleAxis(speed * revolveHorizontal, Vector3.up) * offset;
         offset = Quaternion.AngleAxis(speed * revolveVertical, transform.right) * offset;
+
+        //Mouse controls
+        if (Input.mousePosition.x > Screen.width - 30)
+        {
+            offset = Quaternion.AngleAxis(-speed, Vector3.up) * offset;
+        }
+        else if (Input.mousePosition.x < 30)
+        {
+            offset = Quaternion.AngleAxis(speed, Vector3.up) * offset;
+        }
+        if (Input.mousePosition.y > Screen.height - 30 && offset.y < distance - 0.1)
+        {
+            offset = Quaternion.AngleAxis(speed, transform.right) * offset;
+        }
+        else if (Input.mousePosition.y < 30 && offset.y > 0)
+        {
+            offset = Quaternion.AngleAxis(-speed, transform.right) * offset;
+        }
     }
 
     // Update is called once per frame
