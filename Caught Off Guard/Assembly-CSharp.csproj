@@ -64,6 +64,7 @@
     <Compile Include="Assets\Scripts\ActionController.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\InventoryController.cs" />
+    <Compile Include="Assets\Scripts\ObjectScripts\PlankController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>C:/Users/conno/Documents/GitHub/CSE_381_Project/Caught Off Guard/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

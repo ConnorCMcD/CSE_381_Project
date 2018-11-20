@@ -93,4 +93,13 @@ public class InventoryController : MonoBehaviour {
             text.text = "Use " + selectedItem.name + " On " + ActionHandler.GetObjectName(objectid);
         }
     }
+
+    public void SelectObject(string objectid)
+    {
+        if (selectedItem != null)
+        {
+            text.text = ActionHandler.PerformAction(objectid, selectedItem.name);
+        }
+        selectedItem = null;
+    }
 }
