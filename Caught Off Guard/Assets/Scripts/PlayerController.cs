@@ -10,9 +10,11 @@ public class PlayerController : MonoBehaviour {
 
     private CharacterController charController;
     private Vector3 xzPlaneNormal = new Vector3(0f, 1f, 0f);
+    private Animator anim;
 
     public void Start() {
         charController = GetComponent<CharacterController>();
+        anim = GetComponent<Animator>();
     }
     public void Update() {
         float verticalInput = Input.GetAxis(verticalName);
@@ -25,6 +27,11 @@ public class PlayerController : MonoBehaviour {
         if (verticalInput + horizontalInput != 0.0)
         {
             transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+            anim.SetBool("Moving", true);
+        }
+        else
+        {
+            anim.SetBool("Moving", false);
         }
 
         charController.SimpleMove(direction * movementSpeed);
