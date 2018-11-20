@@ -1,0 +1,182 @@
+fileFormatVersion: 2
+guid: f251d6b0f5efe3842b4df0eb76e91152
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: abdomen
+    100002: ankle_L
+    100004: ankle_R
+    100006: Armature
+    100008: calf_L
+    100010: calf_R
+    100012: chest
+    100014: foot_L
+    100016: foot_R
+    100018: head
+    100020: hip
+    100022: lower_arm_L
+    100024: lower_arm_R
+    100026: middle1_L
+    100028: middle1_R
+    100030: middle2_L
+    100032: middle2_R
+    100034: neck
+    100036: object
+    100038: pinky1_L
+    100040: pinky1_R
+    100042: pinky2_L
+    100044: pinky2_R
+    100046: //RootNode
+    100048: pointer1_L
+    100050: pointer1_R
+    100052: pointer2_L
+    100054: pointer2_R
+    100056: ring1_L
+    100058: ring1_R
+    100060: ring2_L
+    100062: ring2_R
+    100064: shoulder_L
+    100066: shoulder_R
+    100068: thigh_L
+    100070: thigh_R
+    100072: thumb1_L
+    100074: thumb1_R
+    100076: thumb2_L
+    100078: thumb2_R
+    100080: upper_arm_L
+    100082: upper_arm_R
+    100084: walk_helper_L
+    100086: walk_helper_R
+    400000: abdomen
+    400002: ankle_L
+    400004: ankle_R
+    400006: Armature
+    400008: calf_L
+    400010: calf_R
+    400012: chest
+    400014: foot_L
+    400016: foot_R
+    400018: head
+    400020: hip
+    400022: lower_arm_L
+    400024: lower_arm_R
+    400026: middle1_L
+    400028: middle1_R
+    400030: middle2_L
+    400032: middle2_R
+    400034: neck
+    400036: object
+    400038: pinky1_L
+    400040: pinky1_R
+    400042: pinky2_L
+    400044: pinky2_R
+    400046: //RootNode
+    400048: pointer1_L
+    400050: pointer1_R
+    400052: pointer2_L
+    400054: pointer2_R
+    400056: ring1_L
+    400058: ring1_R
+    400060: ring2_L
+    400062: ring2_R
+    400064: shoulder_L
+    400066: shoulder_R
+    400068: thigh_L
+    400070: thigh_R
+    400072: thumb1_L
+    400074: thumb1_R
+    400076: thumb2_L
+    400078: thumb2_R
+    400080: upper_arm_L
+    400082: upper_arm_R
+    400084: walk_helper_L
+    400086: walk_helper_R
+    2100000: Material__texture
+    4300000: object
+    7400000: Default Take
+    7400002: walk
+    7400004: walk_startup
+    9500000: //RootNode
+    13700000: object
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -15,12 +15,18 @@ public class PlayerController : MonoBehaviour {
         charController = GetComponent<CharacterController>();
     }
     public void Update() {
-        float verticalInput = Input.GetAxis(verticalName) * movementSpeed;
-        float horizontalInput = Input.GetAxis(horizontalName) * movementSpeed;
+        float verticalInput = Input.GetAxis(verticalName);
+        float horizontalInput = Input.GetAxis(horizontalName);
 
-        Vector3 fowardMovement = Vector3.Normalize(Vector3.ProjectOnPlane(camera.transform.forward, xzPlaneNormal)) * verticalInput;
-        Vector3 rightMovement = camera.transform.right * horizontalInput;
+        Vector3 fowardDirection = Vector3.Normalize(Vector3.ProjectOnPlane(camera.transform.forward, xzPlaneNormal)) * verticalInput;
+        Vector3 sideDirection = camera.transform.right * horizontalInput;
+        Vector3 direction = Vector3.Normalize(fowardDirection + sideDirection);
 
-        charController.SimpleMove(fowardMovement + rightMovement);
+        if (verticalInput + horizontalInput != 0.0)
+        {
+            transform.rotation = Quaternion.LookRotation(direction, Vector3.up);
+        }
+
+        charController.SimpleMove(direction * movementSpeed);
     }
 }
