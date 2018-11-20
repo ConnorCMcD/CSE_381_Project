@@ -63,6 +63,9 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\ActionController.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\DogController.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\DogDetectionScript.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\DogInteractionScript.cs" />
     <Compile Include="Assets\Scripts\InventoryController.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\PlankController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />

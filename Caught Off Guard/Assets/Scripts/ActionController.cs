@@ -23,6 +23,7 @@ public class ActionController : MonoBehaviour {
 
     public GameObject testblock;
     public GameObject PLANK;
+    public GameObject GUARD_DOG;
     
     private Dictionary<string, COGObject> objects = new Dictionary<string, COGObject>();
 
@@ -32,6 +33,10 @@ public class ActionController : MonoBehaviour {
         COGObject plank = new COGObject("Plank", PLANK);
         plank.allowedActions.Add("Punch");
         objects.Add("PLANK", plank);
+        COGObject dog = new COGObject("Dog", GUARD_DOG);
+        dog.allowedActions.Add("Punch");
+        dog.allowedActions.Add("Bone");
+        objects.Add("GUARD_DOG", dog);
 	}
 	
 	// Update is called once per frame
