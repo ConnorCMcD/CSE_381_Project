@@ -21,23 +21,32 @@ public class ActionController : MonoBehaviour {
     }
 
 
-    public GameObject testblock;
-    public GameObject PLANK;
-    public GameObject GUARD_DOG;
+    public GameObject testblock, PLANK, GUARD_DOG, LOST_AXE, BRAMBLE;
     
     private Dictionary<string, COGObject> objects = new Dictionary<string, COGObject>();
 
 	// Use this for initialization
 	void Start () {
         objects.Add("TEST_BLOCK", new COGObject("Block", testblock));
+
         COGObject plank = new COGObject("Plank", PLANK);
-        plank.allowedActions.Add("Punch");
+        plank.allowedActions.Add("PUNCH");
         objects.Add("PLANK", plank);
+
         COGObject dog = new COGObject("Dog", GUARD_DOG);
-        dog.allowedActions.Add("Punch");
-        dog.allowedActions.Add("Bone");
+        dog.allowedActions.Add("PUNCH");
+        dog.allowedActions.Add("BONE");
         objects.Add("GUARD_DOG", dog);
-	}
+
+        COGObject axe = new COGObject("Axe", LOST_AXE);
+        axe.allowedActions.Add("GRAB");
+        objects.Add("LOST_AXE", axe);
+
+        COGObject bramble = new COGObject("Bramble", BRAMBLE);
+        bramble.allowedActions.Add("WOOD_AXE");
+        bramble.allowedActions.Add("PUNCH");
+        objects.Add("BRAMBLE", bramble);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -54,18 +63,17 @@ public class ActionController : MonoBehaviour {
         return "Error";
     }
 
-    public string PerformAction(string objectid, string action)
+    public bool TryPerformAction(string objectid, string actionid)
     {
         COGObject cobject;
         if (objects.TryGetValue(objectid, out cobject))
         {
-            if (cobject.allowedActions.Contains(action))
+            if (cobject.allowedActions.Contains(actionid))
             {
-                cobject.PerformAction(action);
-                return "Used " + action + " On " + cobject.name;
+                cobject.PerformAction(actionid);
+                return true;
             }
-            return "Action Not Allowed";
         }
-        return "Error";
+        return false;
     }
 }
