@@ -28,6 +28,7 @@ public class InventoryController : MonoBehaviour {
     public int test;
 
     private ArrayList items = new ArrayList();
+    private Image[] itemslots = new Image[4];
     private Item selectedItem;
     private int wheelIndex;
 
@@ -38,11 +39,21 @@ public class InventoryController : MonoBehaviour {
         items.Add(new Item("Punch", Punch_Icon));
         items.Add(new Item("Key", Key_Icon));
         items.Add(new Item("Bone", Bone_Icon));
+        items.Add(new Item("Bone", Bone_Icon));
+        items.Add(new Item("Bone", Bone_Icon));
+        items.Add(new Item("Bone", Bone_Icon));
+        items.Add(new Item("Bone", Bone_Icon));
+        items.Add(new Item("Key", Key_Icon));
+        items.Add(new Item("Bone", Bone_Icon));
         wheelIndex = 0;
         ItemSlot1.sprite = ((Item)items[0]).icon;
         ItemSlot2.sprite = ((Item)items[1]).icon;
         ItemSlot3.sprite = ((Item)items[2]).icon;
         ItemSlot4.sprite = ((Item)items[3]).icon;
+        itemslots[0] = ItemSlot1;
+        itemslots[1] = ItemSlot2;
+        itemslots[2] = ItemSlot3;
+        itemslots[3] = ItemSlot4;
     }
 	
 	// Update is called once per frame
@@ -101,5 +112,26 @@ public class InventoryController : MonoBehaviour {
             text.text = ActionHandler.PerformAction(objectid, selectedItem.name);
         }
         selectedItem = null;
+    }
+
+    public void CycleInventory(int index)
+    {
+        wheelIndex += index;
+        if (wheelIndex >= items.Count)
+            wheelIndex = 0;
+        else if (wheelIndex < 0)
+            wheelIndex = (items.Count - 1) - (items.Count - 1) % 4;
+        for(int i = 0; i < 4; i++)
+        {
+            if (wheelIndex + i < items.Count)
+            {
+                itemslots[i].enabled = true;
+                itemslots[i].sprite = ((Item)items[wheelIndex + i]).icon;
+            }
+            else
+            {
+                itemslots[i].enabled = false;
+            }
+        }
     }
 }
