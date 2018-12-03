@@ -6,27 +6,23 @@ using UnityEngine.UI;
 public class InventoryController : MonoBehaviour {
     private class Item
     {
+        public string id;
         public string name;
         public Sprite icon;
-        public Item(string name, Sprite icon)
+        public Item(string id, string name, Sprite icon)
         {
+            this.id = id;
             this.name = name;
             this.icon = icon;
         }
     }
 
     public Text text;
-    public Image ItemSlot1;
-    public Image ItemSlot2;
-    public Image ItemSlot3;
-    public Image ItemSlot4;
-    public Sprite Grab_Icon;
-    public Sprite Punch_Icon;
-    public Sprite Bone_Icon;
-    public Sprite Key_Icon;
+    public Image ItemSlot1, ItemSlot2, ItemSlot3, ItemSlot4;
+    public Sprite Grab_Icon, Punch_Icon, Speak_Icon, Bone_Icon, Key_Icon, Axe_Icon;
     public ActionController ActionHandler;
-    public int test;
 
+    private Dictionary<string, Item> itemLookUp = new Dictionary<string, Item>();
     private ArrayList items = new ArrayList();
     private Image[] itemslots = new Image[4];
     private Item selectedItem;
@@ -35,21 +31,29 @@ public class InventoryController : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         selectedItem = null;
-        items.Add(new Item("Grab", Grab_Icon));
-        items.Add(new Item("Punch", Punch_Icon));
-        items.Add(new Item("Key", Key_Icon));
-        items.Add(new Item("Bone", Bone_Icon));
-        items.Add(new Item("Bone", Bone_Icon));
-        items.Add(new Item("Bone", Bone_Icon));
-        items.Add(new Item("Bone", Bone_Icon));
-        items.Add(new Item("Bone", Bone_Icon));
-        items.Add(new Item("Key", Key_Icon));
-        items.Add(new Item("Bone", Bone_Icon));
+
+        //starting items
+        Item grab = new Item("GRAB", "Grab", Grab_Icon);
+        itemLookUp.Add("GRAB", grab);
+        items.Add(grab);
+        Item punch = new Item("PUNCH", "Punch", Punch_Icon);
+        itemLookUp.Add("PUNCH", punch);
+        items.Add(punch);
+        Item speak = new Item("SPEAK", "Speak", Speak_Icon);
+        itemLookUp.Add("SPEAK", speak);
+        items.Add(speak);
+
+        //other items
+        itemLookUp.Add("WOOD_AXE", new Item("WOOD_AXE", "Axe", Axe_Icon));
+        itemLookUp.Add("GATE_KEY", new Item("GATE_KEY", "Key", Key_Icon));
+        itemLookUp.Add("BONE", new Item("BONE", "Bone", Bone_Icon));
+
+        //setting up inventory wheel
         wheelIndex = 0;
         ItemSlot1.sprite = ((Item)items[0]).icon;
         ItemSlot2.sprite = ((Item)items[1]).icon;
         ItemSlot3.sprite = ((Item)items[2]).icon;
-        ItemSlot4.sprite = ((Item)items[3]).icon;
+        //ItemSlot4.sprite = ((Item)items[3]).icon;
         itemslots[0] = ItemSlot1;
         itemslots[1] = ItemSlot2;
         itemslots[2] = ItemSlot3;
@@ -60,6 +64,26 @@ public class InventoryController : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    public void AddItem(string itemID)
+    {
+        Item toAdd;
+        if (itemLookUp.TryGetValue(itemID, out toAdd))
+        {
+            items.Add(toAdd);
+            UpdateInventory();
+        }
+    }
+
+    public void RemoveItem(string itemID)
+    {
+        Item toRemove;
+        if(itemLookUp.TryGetValue(itemID, out toRemove))
+        {
+            items.Remove(toRemove);
+            UpdateInventory();
+        }
+    }
 
     public void SelectItem(int itemkey)
     {
@@ -109,7 +133,10 @@ public class InventoryController : MonoBehaviour {
     {
         if (selectedItem != null)
         {
-            text.text = ActionHandler.PerformAction(objectid, selectedItem.name);
+            if (!ActionHandler.TryPerformAction(objectid, selectedItem.id))
+            {
+                text.text = "Cannot Use " + selectedItem.name + " On " + ActionHandler.GetObjectName(objectid);
+            }
         }
         selectedItem = null;
     }
@@ -121,7 +148,12 @@ public class InventoryController : MonoBehaviour {
             wheelIndex = 0;
         else if (wheelIndex < 0)
             wheelIndex = (items.Count - 1) - (items.Count - 1) % 4;
-        for(int i = 0; i < 4; i++)
+        UpdateInventory();
+    }
+
+    private void UpdateInventory()
+    {
+        for (int i = 0; i < 4; i++)
         {
             if (wheelIndex + i < items.Count)
             {
@@ -133,5 +165,10 @@ public class InventoryController : MonoBehaviour {
                 itemslots[i].enabled = false;
             }
         }
+    }
+
+    public void SetText(string message)
+    {
+        text.text = message;
     }
 }

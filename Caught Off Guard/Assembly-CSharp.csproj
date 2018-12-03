@@ -67,6 +67,8 @@
     <Compile Include="Assets\Scripts\EnemyScripts\DogDetectionScript.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\DogInteractionScript.cs" />
     <Compile Include="Assets\Scripts\InventoryController.cs" />
+    <Compile Include="Assets\Scripts\ObjectScripts\AxeController.cs" />
+    <Compile Include="Assets\Scripts\ObjectScripts\BrambleController.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\PlankController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Reference Include="UnityEditor.StandardEvents">
