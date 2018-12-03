@@ -66,6 +66,7 @@
     <Compile Include="Assets\Scripts\EnemyScripts\DogController.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\DogDetectionScript.cs" />
     <Compile Include="Assets\Scripts\EnemyScripts\DogInteractionScript.cs" />
+    <Compile Include="Assets\Scripts\EnemyScripts\SkeletonController.cs" />
     <Compile Include="Assets\Scripts\InventoryController.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\AxeController.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\BrambleController.cs" />

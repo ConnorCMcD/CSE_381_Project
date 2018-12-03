@@ -47,6 +47,9 @@ ModelImporter:
     100082: upper_arm_R
     100084: walk_helper_L
     100086: walk_helper_R
+    100088: goggles
+    100090: goggles_0
+    100092: player
     400000: abdomen
     400002: ankle_L
     400004: ankle_R
@@ -91,13 +94,24 @@ ModelImporter:
     400082: upper_arm_R
     400084: walk_helper_L
     400086: walk_helper_R
+    400088: goggles
+    400090: goggles_0
+    400092: player
     2100000: Material__texture
+    2100002: Material
     4300000: object
+    4300002: goggles
+    4300004: player
     7400000: Default Take
     7400002: walk
     7400004: walk_startup
+    7400006: punch
+    7400008: grab
     9500000: //RootNode
     13700000: object
+    13700002: goggles
+    13700004: player
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -206,6 +220,78 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: punch
+      takeName: punch
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.96564883
+        functionName: ReturnControl
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: f47e3685f21cfc34497c5ce795a02bd8,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: grab
+      takeName: grab
+      firstFrame: 0
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.97709924
+        functionName: ReturnControl
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: f47e3685f21cfc34497c5ce795a02bd8,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

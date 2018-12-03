@@ -21,7 +21,8 @@ public class ActionController : MonoBehaviour {
     }
 
 
-    public GameObject testblock, PLANK, GUARD_DOG, LOST_AXE, BRAMBLE;
+    public GameObject testblock, PLANK, GUARD_DOG, LOST_AXE, BRAMBLE, SKELETON;
+    public PlayerController player;
     
     private Dictionary<string, COGObject> objects = new Dictionary<string, COGObject>();
 
@@ -36,6 +37,7 @@ public class ActionController : MonoBehaviour {
         COGObject dog = new COGObject("Dog", GUARD_DOG);
         dog.allowedActions.Add("PUNCH");
         dog.allowedActions.Add("BONE");
+        dog.allowedActions.Add("WOOD_AXE");
         objects.Add("GUARD_DOG", dog);
 
         COGObject axe = new COGObject("Axe", LOST_AXE);
@@ -46,6 +48,10 @@ public class ActionController : MonoBehaviour {
         bramble.allowedActions.Add("WOOD_AXE");
         bramble.allowedActions.Add("PUNCH");
         objects.Add("BRAMBLE", bramble);
+
+        COGObject skeleton = new COGObject("Skeleton", SKELETON);
+        skeleton.allowedActions.Add("WOOD_AXE");
+        objects.Add("SKELETON", skeleton);
     }
 	
 	// Update is called once per frame
@@ -71,6 +77,7 @@ public class ActionController : MonoBehaviour {
             if (cobject.allowedActions.Contains(actionid))
             {
                 cobject.PerformAction(actionid);
+                player.TriggerAnimation(actionid);
                 return true;
             }
         }

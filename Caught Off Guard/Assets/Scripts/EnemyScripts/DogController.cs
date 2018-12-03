@@ -5,12 +5,13 @@ using UnityEngine;
 public class DogController : MonoBehaviour
 {
     public GameObject player;
+    public InventoryController Inventory;
     public float speed;
     public Material normal;
     public Material happy;
     public Material angry;
 
-    private enum State {IDLE, TRACKING, WAITING, ATTACKING, HUNTING};
+    private enum State {IDLE, GUARDING, FOLLOWING, WAITING, BEGGING, ATTACKING, HUNTING};
     private State state;
 
     // Use this for initialization
@@ -28,12 +29,12 @@ public class DogController : MonoBehaviour
     {
         Vector3 playerPos = player.transform.position;
         Vector3 enemyPos = transform.position;
-        if (state == State.TRACKING || state == State.ATTACKING || state == State.WAITING)
+        if (state == State.GUARDING || state == State.ATTACKING || state == State.FOLLOWING || state == State.BEGGING)
         {
             Vector3 lookAt = player.transform.position;
             lookAt.y = transform.position.y;
             transform.LookAt(lookAt);
-            if (state == State.TRACKING || state == State.ATTACKING)
+            if (state == State.ATTACKING || state == State.FOLLOWING)
             {
                 transform.position += transform.forward * speed * Time.deltaTime;
             }
@@ -45,23 +46,55 @@ public class DogController : MonoBehaviour
     {
         switch (action)
         {
-            case "Punch":
+            case "PUNCH":
                 if (state != State.ATTACKING && state != State.HUNTING) {
-                    GetComponent<MeshRenderer>().material = angry;
-                    if (state == State.TRACKING || state == State.WAITING)
+                    if (state == State.FOLLOWING || state == State.BEGGING || state == State.GUARDING)
                     {
                         state = State.ATTACKING;
+                        Inventory.SetText("You have angered the Dog.");
+                        GetComponent<MeshRenderer>().material = angry;
                     }
-                    else
+                    else if (state == State.HUNTING || state == State.IDLE || state == State.WAITING)
                     {
-                        state = State.HUNTING;
+                        Inventory.SetText("You can't reach the Dog.");
                     }
                 }
                 break;
-            case "Bone":
+            case "BONE":
                 if (state != State.ATTACKING && state != State.HUNTING)
                 {
-                    GetComponent<MeshRenderer>().material = happy;
+                    if (state == State.FOLLOWING || state == State.BEGGING || state == State.GUARDING)
+                    {
+                        state = State.FOLLOWING;
+                        Inventory.SetText("You Give the Dog the Bone.");
+                        GetComponent<MeshRenderer>().material = happy;
+                    }
+                    else
+                    {
+                        Inventory.SetText("You can't reach the Dog.");
+                    }
+                }
+                else
+                {
+                    Inventory.SetText("The Dog is too Angry.");
+                }
+                break;
+            case "WOOD_AXE":
+                if (state == State.HUNTING || state == State.IDLE || state == State.WAITING)
+                {
+                    Inventory.SetText("You can't reach the Dog.");
+                }
+                else
+                {
+                    Destroy(gameObject);
+                    if (state == State.FOLLOWING || state == State.BEGGING)
+                    {
+                        Inventory.SetText("YOU MONSTER");
+                    }
+                    else
+                    {
+                        Inventory.SetText("You Killed the Dog");
+                    }
                 }
                 break;
         }
@@ -71,16 +104,21 @@ public class DogController : MonoBehaviour
     {
         if(state == State.IDLE)
         {
-            state = State.TRACKING;
-        }else if(state == State.HUNTING)
+            state = State.GUARDING;
+        }
+        else if(state == State.HUNTING)
         {
             state = State.ATTACKING;
+        }
+        else if(state == State.WAITING)
+        {
+            state = State.FOLLOWING;
         }
     }
 
     public void UndetectPlayer()
     {
-        if (state == State.TRACKING)
+        if (state == State.GUARDING)
         {
             state = State.IDLE;
         }
@@ -88,21 +126,25 @@ public class DogController : MonoBehaviour
         {
             state = State.HUNTING;
         }
-    }
-
-    public void NearPlayer()
-    {
-        if (state == State.TRACKING)
+        else if (state == State.FOLLOWING)
         {
             state = State.WAITING;
         }
     }
 
+    public void NearPlayer()
+    {
+        if (state == State.FOLLOWING)
+        {
+            state = State.BEGGING;
+        }
+    }
+
     public void AwayPlayer()
     {
-        if (state == State.WAITING)
+        if (state == State.BEGGING )
         {
-            state = State.TRACKING;
+            state = State.FOLLOWING;
         }
     }
 }
