@@ -3,7 +3,20 @@ guid: 0be8252c66e3fa848ba3076a1790b543
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - text: {instanceID: 0}
+  - ItemSlot1: {instanceID: 0}
+  - ItemSlot2: {instanceID: 0}
+  - ItemSlot3: {instanceID: 0}
+  - ItemSlot4: {instanceID: 0}
+  - Grab_Icon: {fileID: 21300000, guid: f04f9c6e7b46aed4f8f4b3a4b32342af, type: 3}
+  - Punch_Icon: {fileID: 21300000, guid: b80bdc0afb172c64388ce185e49684dd, type: 3}
+  - Speak_Icon: {fileID: 21300000, guid: 42852003572a2974494308ce0b43c59a, type: 3}
+  - Bone_Icon: {fileID: 21300000, guid: b2ef251d85622e0419c511b777f434f5, type: 3}
+  - Key_Icon: {fileID: 21300000, guid: 750ea6d6c6f35654a86900ae7d404ff8, type: 3}
+  - Axe_Icon: {fileID: 21300000, guid: 9f2b601c2ae3a374097a54dd3ef3d67c, type: 3}
+  - Map_Icon: {fileID: 21300000, guid: 2d2a403501eb30842adf71d64656b363, type: 3}
+  - ActionHandler: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

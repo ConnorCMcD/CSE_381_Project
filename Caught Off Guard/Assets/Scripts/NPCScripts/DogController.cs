@@ -11,11 +11,13 @@ public class DogController : MonoBehaviour
     public Material happy;
     public Material angry;
 
+    private CharacterController charController;
     private enum State {IDLE, GUARDING, FOLLOWING, WAITING, BEGGING, ATTACKING, HUNTING};
     private State state;
 
     // Use this for initialization
     void Start () {
+        charController = GetComponent<CharacterController>();
         state = State.IDLE;
         GetComponent<MeshRenderer>().material = normal;
     }
@@ -36,9 +38,13 @@ public class DogController : MonoBehaviour
             transform.LookAt(lookAt);
             if (state == State.ATTACKING || state == State.FOLLOWING)
             {
-                transform.position += transform.forward * speed * Time.deltaTime;
+                charController.SimpleMove(transform.forward * speed);
             }
+            charController.SimpleMove(transform.up * 1);
             transform.Rotate(90, 0, 0);
+        }
+        else {
+            charController.SimpleMove(Vector3.zero);
         }
     }
 

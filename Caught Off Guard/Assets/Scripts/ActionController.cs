@@ -21,7 +21,7 @@ public class ActionController : MonoBehaviour {
     }
 
 
-    public GameObject testblock, PLANK, GUARD_DOG, LOST_AXE, BRAMBLE, SKELETON;
+    public GameObject testblock, PLANK, GUARD_DOG, LOST_AXE, BRAMBLE, SKELETON, WOODSMAN;
     public PlayerController player;
     
     private Dictionary<string, COGObject> objects = new Dictionary<string, COGObject>();
@@ -52,6 +52,12 @@ public class ActionController : MonoBehaviour {
         COGObject skeleton = new COGObject("Skeleton", SKELETON);
         skeleton.allowedActions.Add("WOOD_AXE");
         objects.Add("SKELETON", skeleton);
+
+        COGObject woodsman = new COGObject("Woodsman", WOODSMAN);
+        woodsman.allowedActions.Add("PUNCH");
+        woodsman.allowedActions.Add("SPEAK");
+        woodsman.allowedActions.Add("WOOD_AXE");
+        objects.Add("WOODSMAN", woodsman);
     }
 	
 	// Update is called once per frame

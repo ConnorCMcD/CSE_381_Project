@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
     public void Start() {
         charController = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
-        controllable = true;
+        controllable = false;
     }
     public void Update() {
         if (controllable)
@@ -40,6 +40,9 @@ public class PlayerController : MonoBehaviour {
 
             charController.SimpleMove(direction * movementSpeed);
         }
+        else {
+            charController.SimpleMove(Vector3.zero);
+        }
     }
 
     public void TriggerAnimation(string actionid)
@@ -62,5 +65,9 @@ public class PlayerController : MonoBehaviour {
     public void ReturnControl()
     {
         controllable = true;
+    }
+
+    public void TakeControl() {
+        controllable = false;
     }
 }

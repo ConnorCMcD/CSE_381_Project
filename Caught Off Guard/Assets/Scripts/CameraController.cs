@@ -12,9 +12,9 @@ public class CameraController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        offset.x = 0;
-        offset.y = distance / Mathf.Sqrt(2);
-        offset.z = distance / Mathf.Sqrt(2);
+        offset.x = -1 * distance / Mathf.Sqrt(3);
+        offset.y = distance / Mathf.Sqrt(3);
+        offset.z = -1 * distance / Mathf.Sqrt(3);
     }
 
     void FixedUpdate() {
