@@ -55,6 +55,7 @@ public class InventoryController : MonoBehaviour {
         ItemSlot1.sprite = ((Item)items[0]).icon;
         ItemSlot2.sprite = ((Item)items[1]).icon;
         ItemSlot3.sprite = ((Item)items[2]).icon;
+        ItemSlot4.enabled = false;
         //ItemSlot4.sprite = ((Item)items[3]).icon;
         itemslots[0] = ItemSlot1;
         itemslots[1] = ItemSlot2;
