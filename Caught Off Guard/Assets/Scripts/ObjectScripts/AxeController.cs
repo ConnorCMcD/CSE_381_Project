@@ -24,6 +24,7 @@ public class AxeController : MonoBehaviour {
                 Destroy(gameObject);
                 Inventory.AddItem("WOOD_AXE");
                 Inventory.SetText("Got Axe");
+                Inventory.DeselectItem();
                 break;
         }
     }

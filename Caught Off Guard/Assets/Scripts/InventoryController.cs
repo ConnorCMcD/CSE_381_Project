@@ -19,7 +19,7 @@ public class InventoryController : MonoBehaviour {
 
     public Text text;
     public Image ItemSlot1, ItemSlot2, ItemSlot3, ItemSlot4;
-    public Sprite Grab_Icon, Punch_Icon, Speak_Icon, Bone_Icon, Key_Icon, Axe_Icon, Map_Icon;
+    public Sprite Grab_Icon, Punch_Icon, Speak_Icon, Bone_Icon, Key_Icon, Axe_Icon, Map_Icon, Wood_Icon;
     public ActionController ActionHandler;
 
     private Dictionary<string, Item> itemLookUp = new Dictionary<string, Item>();
@@ -48,6 +48,7 @@ public class InventoryController : MonoBehaviour {
         itemLookUp.Add("GATE_KEY", new Item("GATE_KEY", "Key", Key_Icon));
         itemLookUp.Add("BONE", new Item("BONE", "Bone", Bone_Icon));
         itemLookUp.Add("ISLAND_MAP", new Item("ISLAND_MAP", "Map", Map_Icon));
+        itemLookUp.Add("WOOD_CHUNK", new Item("WOOD_CHUNK", "Chunk of Wood", Wood_Icon));
 
         //setting up inventory wheel
         wheelIndex = 0;

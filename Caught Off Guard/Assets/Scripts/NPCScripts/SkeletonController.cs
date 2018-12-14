@@ -24,6 +24,7 @@ public class SkeletonController : MonoBehaviour
                 Destroy(gameObject);
                 Inventory.AddItem("BONE");
                 Inventory.SetText("Killed Skeleton. Got Bone.");
+                Inventory.DeselectItem();
                 break;
         }
     }

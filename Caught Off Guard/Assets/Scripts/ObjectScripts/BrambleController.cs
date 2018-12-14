@@ -23,9 +23,11 @@ public class BrambleController : MonoBehaviour {
             case "WOOD_AXE":
                 Destroy(gameObject);
                 Inventory.SetText("Chopped Down Bramble");
+                Inventory.DeselectItem();
                 break;
             case "PUNCH":
                 Inventory.SetText("OW! That hurt your hands");
+                Inventory.DeselectItem();
                 break;
         }
     }

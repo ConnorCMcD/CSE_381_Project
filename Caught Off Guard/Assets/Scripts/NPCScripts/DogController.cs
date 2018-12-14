@@ -12,14 +12,18 @@ public class DogController : MonoBehaviour
     public Material angry;
 
     private CharacterController charController;
+    private TextMesh text;
     private enum State {IDLE, GUARDING, FOLLOWING, WAITING, BEGGING, ATTACKING, HUNTING};
     private State state;
 
     // Use this for initialization
     void Start () {
         charController = GetComponent<CharacterController>();
+        text = GetComponentInChildren<TextMesh>();
         state = State.IDLE;
         GetComponent<MeshRenderer>().material = normal;
+
+        text.text = "";
     }
 	
 	// Update is called once per frame
@@ -40,8 +44,8 @@ public class DogController : MonoBehaviour
             {
                 charController.SimpleMove(transform.forward * speed);
             }
-            charController.SimpleMove(transform.up * 1);
             transform.Rotate(90, 0, 0);
+            charController.SimpleMove(Vector3.zero);
         }
         else {
             charController.SimpleMove(Vector3.zero);
@@ -58,6 +62,7 @@ public class DogController : MonoBehaviour
                     {
                         state = State.ATTACKING;
                         Inventory.SetText("You have angered the Dog.");
+                        text.text = "YAP";
                         GetComponent<MeshRenderer>().material = angry;
                     }
                     else if (state == State.HUNTING || state == State.IDLE || state == State.WAITING)
@@ -65,6 +70,7 @@ public class DogController : MonoBehaviour
                         Inventory.SetText("You can't reach the Dog.");
                     }
                 }
+                Inventory.DeselectItem();
                 break;
             case "BONE":
                 if (state != State.ATTACKING && state != State.HUNTING)
@@ -73,6 +79,7 @@ public class DogController : MonoBehaviour
                     {
                         state = State.FOLLOWING;
                         Inventory.SetText("You Give the Dog the Bone.");
+                        text.text = "*crunch crunch*";
                         GetComponent<MeshRenderer>().material = happy;
                     }
                     else
@@ -84,6 +91,7 @@ public class DogController : MonoBehaviour
                 {
                     Inventory.SetText("The Dog is too Angry.");
                 }
+                Inventory.DeselectItem();
                 break;
             case "WOOD_AXE":
                 if (state == State.HUNTING || state == State.IDLE || state == State.WAITING)
@@ -102,6 +110,7 @@ public class DogController : MonoBehaviour
                         Inventory.SetText("You Killed the Dog");
                     }
                 }
+                Inventory.DeselectItem();
                 break;
         }
     }
@@ -111,14 +120,17 @@ public class DogController : MonoBehaviour
         if(state == State.IDLE)
         {
             state = State.GUARDING;
+            text.text = "GRRRRrrr...";
         }
         else if(state == State.HUNTING)
         {
             state = State.ATTACKING;
+            text.text = "BARK BARK";
         }
         else if(state == State.WAITING)
         {
             state = State.FOLLOWING;
+            text.text = "*pant pant*";
         }
     }
 
@@ -136,6 +148,7 @@ public class DogController : MonoBehaviour
         {
             state = State.WAITING;
         }
+        text.text = "";
     }
 
     public void NearPlayer()
