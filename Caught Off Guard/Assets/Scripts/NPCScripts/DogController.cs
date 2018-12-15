@@ -21,7 +21,6 @@ public class DogController : MonoBehaviour
         charController = GetComponent<CharacterController>();
         text = GetComponentInChildren<TextMesh>();
         state = State.IDLE;
-        GetComponent<MeshRenderer>().material = normal;
 
         text.text = "";
     }
@@ -63,7 +62,6 @@ public class DogController : MonoBehaviour
                         state = State.ATTACKING;
                         Inventory.SetText("You have angered the Dog.");
                         text.text = "YAP";
-                        GetComponent<MeshRenderer>().material = angry;
                     }
                     else if (state == State.HUNTING || state == State.IDLE || state == State.WAITING)
                     {
@@ -80,7 +78,6 @@ public class DogController : MonoBehaviour
                         state = State.FOLLOWING;
                         Inventory.SetText("You Give the Dog the Bone.");
                         text.text = "*crunch crunch*";
-                        GetComponent<MeshRenderer>().material = happy;
                     }
                     else
                     {

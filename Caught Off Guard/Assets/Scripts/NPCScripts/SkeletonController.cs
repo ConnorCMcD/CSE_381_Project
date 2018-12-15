@@ -6,14 +6,16 @@ public class SkeletonController : MonoBehaviour
 {
     public InventoryController Inventory;
 
+    private CharacterController charController;
+
     // Use this for initialization
     void Start () {
-		
-	}
+        charController = GetComponent<CharacterController>();
+    }
 	
 	// Update is called once per frame
 	void Update () {
-
+        charController.SimpleMove(Vector3.zero);
     }
 
     public void PerformAction(string action)
