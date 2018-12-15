@@ -19,7 +19,8 @@ public class InventoryController : MonoBehaviour {
 
     public Text text;
     public Image ItemSlot1, ItemSlot2, ItemSlot3, ItemSlot4;
-    public Sprite Grab_Icon, Punch_Icon, Speak_Icon, Bone_Icon, Key_Icon, Axe_Icon, Map_Icon, Wood_Icon;
+    public Sprite Grab_Icon, Punch_Icon, Speak_Icon, Bone_Icon, Key_Icon, Axe_Icon,
+        Map_Icon, Wood_Icon, Torch_Icon, Ball_Icon, Part_Icon;
     public ActionController ActionHandler;
 
     private Dictionary<string, Item> itemLookUp = new Dictionary<string, Item>();
@@ -45,10 +46,15 @@ public class InventoryController : MonoBehaviour {
 
         //other items
         itemLookUp.Add("WOOD_AXE", new Item("WOOD_AXE", "Axe", Axe_Icon));
-        itemLookUp.Add("GATE_KEY", new Item("GATE_KEY", "Key", Key_Icon));
+        itemLookUp.Add("DOOR_KEY", new Item("DOOR_KEY", "Key", Key_Icon));
         itemLookUp.Add("BONE", new Item("BONE", "Bone", Bone_Icon));
         itemLookUp.Add("ISLAND_MAP", new Item("ISLAND_MAP", "Map", Map_Icon));
         itemLookUp.Add("WOOD_CHUNK", new Item("WOOD_CHUNK", "Chunk of Wood", Wood_Icon));
+        itemLookUp.Add("TORCH", new Item("TORCH", "Torch", Torch_Icon));
+        itemLookUp.Add("CANNON_BALL", new Item("CANNON_BALL", "Metal Ball", Ball_Icon));
+        itemLookUp.Add("PLANE_PART1", new Item("PLANE_PART1", "Plane Part", Part_Icon));
+        itemLookUp.Add("PLANE_PART2", new Item("PLANE_PART2", "Plane Part", Part_Icon));
+        itemLookUp.Add("PLANE_PART3", new Item("PLANE_PART3", "Plane Part", Part_Icon));
 
         //setting up inventory wheel
         wheelIndex = 0;

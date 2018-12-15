@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\ActionController.cs" />
+    <Compile Include="Assets\Scripts\BlinkingTextScript.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\InventoryController.cs" />
     <Compile Include="Assets\Scripts\NPCScripts\DogController.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Assets\Scripts\ObjectScripts\LogController.cs" />
     <Compile Include="Assets\Scripts\ObjectScripts\PlankController.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\StartController.cs" />
     <Compile Include="Assets\Scripts\TextController.cs" />
     <Reference Include="UnityEditor.StandardEvents">
       <HintPath>D:/School/CSE 381/Final Project/Caught Off Guard/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>

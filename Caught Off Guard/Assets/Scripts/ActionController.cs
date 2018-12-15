@@ -23,7 +23,8 @@ public class ActionController : MonoBehaviour {
 
     public GameObject GUARD_DOG, LOST_AXE, BRAMBLE, SKELETON, WOODSMAN, WOOD_LOG,
         TUNNEL, FAKE_WALL, SECRET_DOOR, BREAKABLE_WALL, CANNON, CANNON_BALL, LOCKED_DOOR,
-        CHEST, PLAYER_PLANE, CRASHSITE_1, CRASHSITE_2, CRASHSITE_3;
+        CHEST, FLAG, STATUE, TORCH, GRAVE, KEYBOX,
+        PLAYER_PLANE, CRASHSITE_1, CRASHSITE_2, CRASHSITE_3;
     public PlayerController player;
     
     private Dictionary<string, COGObject> objects = new Dictionary<string, COGObject>();
@@ -47,6 +48,8 @@ public class ActionController : MonoBehaviour {
 
         COGObject skeleton = new COGObject("Skeleton", SKELETON);
         skeleton.allowedActions.Add("WOOD_AXE");
+        skeleton.allowedActions.Add("SPEAK");
+        skeleton.allowedActions.Add("WOOD_CHUNK");
         objects.Add("SKELETON", skeleton);
 
         COGObject woodsman = new COGObject("Woodsman", WOODSMAN);
@@ -58,6 +61,7 @@ public class ActionController : MonoBehaviour {
 
         COGObject log = new COGObject("Log", WOOD_LOG);
         log.allowedActions.Add("WOOD_AXE");
+        log.allowedActions.Add("TORCH");
         objects.Add("WOOD_LOG", log);
 
         COGObject tunnel = new COGObject("Tunnel Path", TUNNEL);
@@ -79,6 +83,61 @@ public class ActionController : MonoBehaviour {
         breakwall.allowedActions.Add("WOOD_AXE");
         breakwall.allowedActions.Add("GRAB");
         objects.Add("BREAKABLE_WALL", breakwall);
+
+        COGObject cannon = new COGObject("Cannon", CANNON);
+        cannon.allowedActions.Add("GRAB");
+        cannon.allowedActions.Add("CANNON_BALL");
+        cannon.allowedActions.Add("TORCH");
+        objects.Add("CANNON", cannon);
+
+        COGObject cannonball = new COGObject("Metal Ball", CANNON_BALL);
+        cannonball.allowedActions.Add("GRAB");
+        objects.Add("CANNON_BALL", cannonball);
+
+        COGObject lockeddoor = new COGObject("Door", LOCKED_DOOR);
+        lockeddoor.allowedActions.Add("GRAB");
+        lockeddoor.allowedActions.Add("PUNCH");
+        lockeddoor.allowedActions.Add("DOOR_KEY");
+        lockeddoor.allowedActions.Add("BONE");
+        lockeddoor.allowedActions.Add("WOOD_AXE");
+        lockeddoor.allowedActions.Add("TORCH");
+        objects.Add("LOCKED_DOOR", lockeddoor);
+
+        COGObject chest = new COGObject("Chest of Gold", CHEST);
+        chest.allowedActions.Add("GRAB");
+        objects.Add("CHEST", chest);
+
+        COGObject flag = new COGObject("Pirate Flag", FLAG);
+        flag.allowedActions.Add("TORCH");
+        flag.allowedActions.Add("GRAB");
+        objects.Add("FLAG", flag);
+
+        COGObject grave = new COGObject("Gravestone", GRAVE);
+        grave.allowedActions.Add("GRAB");
+        objects.Add("GRAVE", grave);
+
+        COGObject keybox = new COGObject("Box", KEYBOX);
+        keybox.allowedActions.Add("GRAB");
+        objects.Add("KEYBOX", keybox);
+
+        COGObject pplane = new COGObject("Your Plane", PLAYER_PLANE);
+        pplane.allowedActions.Add("PLANE_PART1");
+        pplane.allowedActions.Add("PLANE_PART2");
+        pplane.allowedActions.Add("PLANE_PART3");
+        pplane.allowedActions.Add("GRAB");
+        objects.Add("PLAYER_PLANE", pplane);
+
+        COGObject crash1 = new COGObject("Plane Wreck", CRASHSITE_1);
+        crash1.allowedActions.Add("GRAB");
+        objects.Add("CRASHSITE_1", crash1);
+
+        COGObject crash2 = new COGObject("Plane Wreck", CRASHSITE_2);
+        crash2.allowedActions.Add("GRAB");
+        objects.Add("CRASHSITE_2", crash2);
+
+        COGObject crash3 = new COGObject("Plane Wreck", CRASHSITE_3);
+        crash3.allowedActions.Add("GRAB");
+        objects.Add("CRASHSITE_3", crash3);
     }
 	
 	// Update is called once per frame
