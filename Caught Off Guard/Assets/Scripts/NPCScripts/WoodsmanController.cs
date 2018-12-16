@@ -58,19 +58,24 @@ public class WoodsmanController : MonoBehaviour {
     }
 
     public void PerformAction(string action) {
-        switch (action) {
-            case "WOOD_AXE":
-                text.text = "You found my axe!\nKeep it for now you might need it";
-                foundAxe = true;
-                Inventory.DeselectItem();
-                break;
-            case "SPEAK":
-                player.SendMessage("TakeControl");
-                AdvanceDialog();
-                break;
-            case "WOOD_CHUNK":
-                text.text = "Not that great of a cut.\nYou keep it.";
-                break;
+        if (seePlayer) {
+            switch (action) {
+                case "WOOD_AXE":
+                    text.text = "You found my axe!\nKeep it for now you might need it";
+                    foundAxe = true;
+                    Inventory.DeselectItem();
+                    break;
+                case "SPEAK":
+                    player.SendMessage("TakeControl");
+                    AdvanceDialog();
+                    break;
+                case "WOOD_CHUNK":
+                    text.text = "Not that great of a cut.\nYou keep it.";
+                    break;
+            }
+        }
+        else {
+            Inventory.SetText("Person is too far");
         }
     }
 

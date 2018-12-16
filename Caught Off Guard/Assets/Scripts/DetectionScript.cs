@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DogDetectionScript : MonoBehaviour {
+public class DetectionScript : MonoBehaviour {
     //Detects when player enters dog's tracking radius
     void OnTriggerEnter(Collider other)
     {

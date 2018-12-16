@@ -22,9 +22,9 @@ public class ActionController : MonoBehaviour {
 
 
     public GameObject GUARD_DOG, LOST_AXE, BRAMBLE, SKELETON, WOODSMAN, WOOD_LOG,
-        TUNNEL, FAKE_WALL, SECRET_DOOR, BREAKABLE_WALL, CANNON, CANNON_BALL, LOCKED_DOOR,
-        CHEST, FLAG, STATUE, TORCH, GRAVE, KEYBOX,
-        PLAYER_PLANE, CRASHSITE_1, CRASHSITE_2, CRASHSITE_3;
+        TUNNEL, FAKE_WALL, BUTTON, SECRET_DOOR, SECRET_PATH, BREAKABLE_WALL, 
+        CANNON, CANNON_BALL, GOLD_CHEST, SECRET_CHEST, FLAG, STATUE, TORCH, 
+        GRAVE, LOOSE_DIRT, PLAYER_PLANE, CRASHSITE_1, CRASHSITE_2, CRASHSITE_3;
     public PlayerController player;
     
     private Dictionary<string, COGObject> objects = new Dictionary<string, COGObject>();
@@ -47,7 +47,6 @@ public class ActionController : MonoBehaviour {
         objects.Add("BRAMBLE", bramble);
 
         COGObject skeleton = new COGObject("Skeleton", SKELETON);
-        skeleton.allowedActions.Add("WOOD_AXE");
         skeleton.allowedActions.Add("SPEAK");
         skeleton.allowedActions.Add("WOOD_CHUNK");
         objects.Add("SKELETON", skeleton);
@@ -67,11 +66,19 @@ public class ActionController : MonoBehaviour {
         COGObject tunnel = new COGObject("Tunnel Path", TUNNEL);
         objects.Add("TUNNEL", tunnel);
 
+        COGObject secretpath = new COGObject("Secret Passage", SECRET_PATH);
+        objects.Add("SECRET_PATH", secretpath);
+
         COGObject shortcut = new COGObject("Weird Wall", FAKE_WALL);
         shortcut.allowedActions.Add("SPEAK");
         shortcut.allowedActions.Add("PUNCH");
         shortcut.allowedActions.Add("WOOD_AXE");
         objects.Add("FAKE_WALL", shortcut);
+
+        COGObject button = new COGObject("Button", BUTTON);
+        button.allowedActions.Add("PUNCH");
+        button.allowedActions.Add("GRAB");
+        objects.Add("BUTTON", button);
 
         COGObject gravedoor = new COGObject("Indented Stone", SECRET_DOOR);
         gravedoor.allowedActions.Add("PUNCH");
@@ -94,18 +101,24 @@ public class ActionController : MonoBehaviour {
         cannonball.allowedActions.Add("GRAB");
         objects.Add("CANNON_BALL", cannonball);
 
-        COGObject lockeddoor = new COGObject("Door", LOCKED_DOOR);
-        lockeddoor.allowedActions.Add("GRAB");
-        lockeddoor.allowedActions.Add("PUNCH");
-        lockeddoor.allowedActions.Add("DOOR_KEY");
-        lockeddoor.allowedActions.Add("BONE");
-        lockeddoor.allowedActions.Add("WOOD_AXE");
-        lockeddoor.allowedActions.Add("TORCH");
-        objects.Add("LOCKED_DOOR", lockeddoor);
+        COGObject torch = new COGObject("Torch", TORCH);
+        torch.allowedActions.Add("GRAB");
+        objects.Add("TORCH", torch);
 
-        COGObject chest = new COGObject("Chest of Gold", CHEST);
-        chest.allowedActions.Add("GRAB");
-        objects.Add("CHEST", chest);
+        COGObject statue = new COGObject("Metal Ball", STATUE);
+        statue.allowedActions.Add("WOOD_AXE");
+        statue.allowedActions.Add("TORCH");
+        objects.Add("STATUE", statue);
+
+        COGObject goldchest = new COGObject("Chest of Gold", GOLD_CHEST);
+        goldchest.allowedActions.Add("GRAB");
+        objects.Add("GOLD_CHEST", goldchest);
+
+        COGObject secretchest = new COGObject("Chest", SECRET_CHEST);
+        secretchest.allowedActions.Add("GRAB");
+        secretchest.allowedActions.Add("KEY");
+        secretchest.allowedActions.Add("BONE");
+        objects.Add("SECRET_CHEST", secretchest);
 
         COGObject flag = new COGObject("Pirate Flag", FLAG);
         flag.allowedActions.Add("TORCH");
@@ -116,9 +129,9 @@ public class ActionController : MonoBehaviour {
         grave.allowedActions.Add("GRAB");
         objects.Add("GRAVE", grave);
 
-        COGObject keybox = new COGObject("Box", KEYBOX);
-        keybox.allowedActions.Add("GRAB");
-        objects.Add("KEYBOX", keybox);
+        COGObject dirt = new COGObject("Loose Dirt", LOOSE_DIRT);
+        dirt.allowedActions.Add("GRAB");
+        objects.Add("LOOSE_DIRT", dirt);
 
         COGObject pplane = new COGObject("Your Plane", PLAYER_PLANE);
         pplane.allowedActions.Add("PLANE_PART1");

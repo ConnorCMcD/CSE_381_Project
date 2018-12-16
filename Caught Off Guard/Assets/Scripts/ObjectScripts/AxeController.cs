@@ -6,8 +6,10 @@ public class AxeController : MonoBehaviour {
 
     public InventoryController Inventory;
 
-	// Use this for initialization
-	void Start () {
+    private bool playerNear = false;
+
+    // Use this for initialization
+    void Start () {
 		
 	}
 	
@@ -21,11 +23,28 @@ public class AxeController : MonoBehaviour {
         switch (action)
         {
             case "GRAB":
-                Destroy(gameObject);
-                Inventory.AddItem("WOOD_AXE");
-                Inventory.SetText("Got Axe");
-                Inventory.DeselectItem();
+                if (playerNear) {
+                    Destroy(gameObject);
+                    Inventory.SetText("Got Axe!");
+                    Inventory.AddItem("WOOD_AXE");
+                    Inventory.DeselectItem();
+                }
+                else {
+                    Inventory.SetText("Object is Too Far");
+                }
                 break;
+        }
+    }
+
+    void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == "Player") {
+            playerNear = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if (other.gameObject.tag == "Player") {
+            playerNear = false;
         }
     }
 }

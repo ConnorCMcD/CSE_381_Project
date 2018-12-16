@@ -5,6 +5,7 @@ using UnityEngine;
 public class LogController : MonoBehaviour {
 
     public InventoryController Inventory;
+    private bool playerNear = false;
 
     // Use this for initialization
     void Start () {
@@ -19,11 +20,28 @@ public class LogController : MonoBehaviour {
     public void PerformAction(string action) {
         switch (action) {
             case "WOOD_AXE":
-                Destroy(gameObject);
-                Inventory.SetText("Chopped some wood");
-                Inventory.AddItem("WOOD_CHUNK");
-                Inventory.DeselectItem();
+                if (playerNear) {
+                    Destroy(gameObject);
+                    Inventory.SetText("Chopped some wood");
+                    Inventory.AddItem("WOOD_CHUNK");
+                    Inventory.DeselectItem();
+                }
+                else {
+                    Inventory.SetText("Object is Too Far");
+                }
                 break;
+        }
+    }
+
+    void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == "Player") {
+            playerNear = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other) {
+        if (other.gameObject.tag == "Player") {
+            playerNear = false;
         }
     }
 }

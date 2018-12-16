@@ -6,6 +6,8 @@ public class BrambleController : MonoBehaviour {
 
     public InventoryController Inventory;
 
+    private bool playerNear;
+
     // Use this for initialization
     void Start () {
 		
@@ -16,19 +18,30 @@ public class BrambleController : MonoBehaviour {
 
     }
 
-    public void PerformAction(string action)
-    {
-        switch (action)
-        {
-            case "WOOD_AXE":
-                Destroy(gameObject);
-                Inventory.SetText("Chopped Down Bramble");
-                Inventory.DeselectItem();
-                break;
-            case "PUNCH":
-                Inventory.SetText("OW! That hurt your hands");
-                Inventory.DeselectItem();
-                break;
+    public void PerformAction(string action) {
+        if (playerNear) {
+            switch (action) {
+                case "WOOD_AXE":
+                    Destroy(gameObject);
+                    Inventory.SetText("Chopped Down Bramble");
+                    Inventory.DeselectItem();
+                    break;
+                case "PUNCH":
+                    Inventory.SetText("OW! That hurt your hands");
+                    Inventory.DeselectItem();
+                    break;
+            }
         }
+        else {
+            Inventory.SetText("Object is too far");
+        }
+    }
+
+    void DetectPlayer() {
+        playerNear = true;
+    }
+
+    void UndetectPlayer() {
+        playerNear = false;
     }
 }
