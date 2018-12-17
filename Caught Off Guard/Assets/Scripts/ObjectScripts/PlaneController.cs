@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlaneController : MonoBehaviour {
 
@@ -30,23 +31,26 @@ public class PlaneController : MonoBehaviour {
                         text.text = "You've fixed " + partsFixed + "/3 parts";
                     }
                     else {
-                        text.text = "YOU WIN";
+                        SceneManager.LoadScene("WinScreen", LoadSceneMode.Single);
                     }
                     break;
                 case "PLANE_PART1":
                     Inventory.DeselectItem();
                     Inventory.SetText("You repair part of the plane");
                     Inventory.RemoveItem("PLANE_PART1");
+                    partsFixed++;
                     break;
                 case "PLANE_PART2":
                     Inventory.DeselectItem();
                     Inventory.SetText("You repair part of the plane");
                     Inventory.RemoveItem("PLANE_PART2");
+                    partsFixed++;
                     break;
                 case "PLANE_PART3":
                     Inventory.DeselectItem();
                     Inventory.SetText("You repair part of the plane");
                     Inventory.RemoveItem("PLANE_PART3");
+                    partsFixed++;
                     break;
             }
         }
@@ -61,5 +65,6 @@ public class PlaneController : MonoBehaviour {
 
     void UndetectPlayer() {
         playerNear = false;
+        text.text = "";
     }
 }
