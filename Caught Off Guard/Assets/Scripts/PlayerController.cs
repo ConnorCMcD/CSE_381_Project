@@ -6,7 +6,9 @@ public class PlayerController : MonoBehaviour {
     public string horizontalName;
     public string verticalName;
     public float movementSpeed;
-    public GameObject camera;
+    public GameObject Camera;
+    public GameObject Tunnel_Exit;
+    public GameObject Tunnel_Entrance;
 
     private CharacterController charController;
     private Vector3 xzPlaneNormal = new Vector3(0f, 1f, 0f);
@@ -24,8 +26,8 @@ public class PlayerController : MonoBehaviour {
             float verticalInput = Input.GetAxis(verticalName);
             float horizontalInput = Input.GetAxis(horizontalName);
 
-            Vector3 fowardDirection = Vector3.Normalize(Vector3.ProjectOnPlane(camera.transform.forward, xzPlaneNormal)) * verticalInput;
-            Vector3 sideDirection = camera.transform.right * horizontalInput;
+            Vector3 fowardDirection = Vector3.Normalize(Vector3.ProjectOnPlane(Camera.transform.forward, xzPlaneNormal)) * verticalInput;
+            Vector3 sideDirection = Camera.transform.right * horizontalInput;
             Vector3 direction = Vector3.Normalize(fowardDirection + sideDirection);
 
             if (verticalInput + horizontalInput != 0.0)
@@ -69,5 +71,13 @@ public class PlayerController : MonoBehaviour {
 
     public void TakeControl() {
         controllable = false;
+    }
+
+    public void TakeTunnel() {
+        transform.position = Tunnel_Exit.transform.position;
+    }
+
+    public void TakePassage() {
+        transform.position = Tunnel_Entrance.transform.position;
     }
 }

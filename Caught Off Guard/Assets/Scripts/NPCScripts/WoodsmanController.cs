@@ -44,17 +44,13 @@ public class WoodsmanController : MonoBehaviour {
         charController.SimpleMove(Vector3.zero);
     }
 
-    void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Player") {
-            seePlayer = true;
-        }
+    void DetectPlayer() {
+        seePlayer = true;
     }
 
-    private void OnTriggerExit(Collider other) {
-        if (other.gameObject.tag == "Player") {
-            seePlayer = false;
-            text.text = "";
-        }
+    void UndetectPlayer() {
+        seePlayer = false;
+        text.text = "";
     }
 
     public void PerformAction(string action) {
@@ -84,7 +80,7 @@ public class WoodsmanController : MonoBehaviour {
             text.text = dialog.Dequeue();
             if(dialog.Count == 0) {
                 if (!gaveMap) {
-                    Inventory.AddItem("ISLAND_MAP");
+                    Inventory.EnableMap();
                     Inventory.SetText("Got Map");
                     gaveMap = true;
                 }

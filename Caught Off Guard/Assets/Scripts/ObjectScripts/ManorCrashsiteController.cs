@@ -7,7 +7,7 @@ public class ManorCrashsiteController : MonoBehaviour {
     public InventoryController Inventory;
 
     private TextMesh text;
-    private bool playerNear;
+    private bool playerNear = false;
 
     // Use this for initialization
     void Start() {

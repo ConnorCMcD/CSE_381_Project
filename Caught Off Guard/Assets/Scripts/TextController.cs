@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TextController : MonoBehaviour {
-    public GameObject camera;
+    public GameObject Camera;
 
     // Use this for initialization
     void Start () {
@@ -16,7 +16,7 @@ public class TextController : MonoBehaviour {
 	}
 
     void LateUpdate() {
-        Vector3 lookAt = camera.transform.position;
+        Vector3 lookAt = Camera.transform.position;
         transform.LookAt(lookAt);
         transform.Rotate(0, 180, 0);
     }

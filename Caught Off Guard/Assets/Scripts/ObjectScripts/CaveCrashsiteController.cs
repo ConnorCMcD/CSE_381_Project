@@ -5,7 +5,7 @@ using UnityEngine;
 public class CaveCrashsiteController : MonoBehaviour {
 
     public InventoryController Inventory;
-    
+
     private bool playerNear = false;
     private bool partTaken = false;
 
@@ -39,15 +39,11 @@ public class CaveCrashsiteController : MonoBehaviour {
         }
     }
 
-    void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "Player") {
-            playerNear = true;
-        }
+    void DetectPlayer() {
+        playerNear = true;
     }
 
-    private void OnTriggerExit(Collider other) {
-        if (other.gameObject.tag == "Player") {
-            playerNear = false;
-        }
+    void UndetectPlayer() {
+        playerNear = false;
     }
 }

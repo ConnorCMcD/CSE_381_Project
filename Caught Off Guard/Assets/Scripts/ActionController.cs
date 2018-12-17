@@ -23,7 +23,7 @@ public class ActionController : MonoBehaviour {
 
     public GameObject GUARD_DOG, LOST_AXE, BRAMBLE, SKELETON, WOODSMAN, WOOD_LOG,
         TUNNEL, FAKE_WALL, BUTTON, SECRET_DOOR, SECRET_PATH, BREAKABLE_WALL, 
-        CANNON, CANNON_BALL, GOLD_CHEST, SECRET_CHEST, FLAG, STATUE, TORCH, 
+        CANNON, CANNON_BALL, CANNON_BALL2, GOLD_CHEST, SECRET_CHEST, FLAG, STATUE, TORCH,
         GRAVE, LOOSE_DIRT, PLAYER_PLANE, CRASHSITE_1, CRASHSITE_2, CRASHSITE_3;
     public PlayerController player;
     
@@ -49,6 +49,7 @@ public class ActionController : MonoBehaviour {
         COGObject skeleton = new COGObject("Skeleton", SKELETON);
         skeleton.allowedActions.Add("SPEAK");
         skeleton.allowedActions.Add("WOOD_CHUNK");
+        skeleton.allowedActions.Add("GRAB");
         objects.Add("SKELETON", skeleton);
 
         COGObject woodsman = new COGObject("Woodsman", WOODSMAN);
@@ -64,9 +65,11 @@ public class ActionController : MonoBehaviour {
         objects.Add("WOOD_LOG", log);
 
         COGObject tunnel = new COGObject("Tunnel Path", TUNNEL);
+        tunnel.allowedActions.Add("ANY");
         objects.Add("TUNNEL", tunnel);
 
         COGObject secretpath = new COGObject("Secret Passage", SECRET_PATH);
+        secretpath.allowedActions.Add("ANY");
         objects.Add("SECRET_PATH", secretpath);
 
         COGObject shortcut = new COGObject("Weird Wall", FAKE_WALL);
@@ -101,6 +104,10 @@ public class ActionController : MonoBehaviour {
         cannonball.allowedActions.Add("GRAB");
         objects.Add("CANNON_BALL", cannonball);
 
+        COGObject cannonball2 = new COGObject("Metal Ball", CANNON_BALL2);
+        cannonball2.allowedActions.Add("GRAB");
+        objects.Add("CANNON_BALL2", cannonball2);
+
         COGObject torch = new COGObject("Torch", TORCH);
         torch.allowedActions.Add("GRAB");
         objects.Add("TORCH", torch);
@@ -116,8 +123,10 @@ public class ActionController : MonoBehaviour {
 
         COGObject secretchest = new COGObject("Chest", SECRET_CHEST);
         secretchest.allowedActions.Add("GRAB");
-        secretchest.allowedActions.Add("KEY");
+        secretchest.allowedActions.Add("CHEST_KEY");
         secretchest.allowedActions.Add("BONE");
+        secretchest.allowedActions.Add("WOOD_AXE");
+        secretchest.allowedActions.Add("TORCH");
         objects.Add("SECRET_CHEST", secretchest);
 
         COGObject flag = new COGObject("Pirate Flag", FLAG);
@@ -173,7 +182,7 @@ public class ActionController : MonoBehaviour {
         COGObject cobject;
         if (objects.TryGetValue(objectid, out cobject))
         {
-            if (cobject.allowedActions.Contains(actionid))
+            if (cobject.allowedActions.Contains(actionid) || cobject.allowedActions.Contains("ANY"))
             {
                 cobject.PerformAction(actionid);
                 player.TriggerAnimation(actionid);

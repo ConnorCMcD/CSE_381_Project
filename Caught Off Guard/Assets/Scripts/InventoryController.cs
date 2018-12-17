@@ -17,10 +17,10 @@ public class InventoryController : MonoBehaviour {
         }
     }
 
-    public Text text;
-    public Image ItemSlot1, ItemSlot2, ItemSlot3, ItemSlot4;
+    public Text text, TutorialText;
+    public Image ItemSlot1, ItemSlot2, ItemSlot3, ItemSlot4, MapSlot, MapOverlay;
     public Sprite Grab_Icon, Punch_Icon, Speak_Icon, Bone_Icon, Key_Icon, Axe_Icon,
-        Map_Icon, Wood_Icon, Torch_Icon, Ball_Icon, Part_Icon;
+        Wood_Icon, Torch_Icon, Ball_Icon, Part_Icon;
     public ActionController ActionHandler;
 
     private Dictionary<string, Item> itemLookUp = new Dictionary<string, Item>();
@@ -46,9 +46,8 @@ public class InventoryController : MonoBehaviour {
 
         //other items
         itemLookUp.Add("WOOD_AXE", new Item("WOOD_AXE", "Axe", Axe_Icon));
-        itemLookUp.Add("DOOR_KEY", new Item("DOOR_KEY", "Key", Key_Icon));
+        itemLookUp.Add("CHEST_KEY", new Item("CHEST_KEY", "Key", Key_Icon));
         itemLookUp.Add("BONE", new Item("BONE", "Bone", Bone_Icon));
-        itemLookUp.Add("ISLAND_MAP", new Item("ISLAND_MAP", "Map", Map_Icon));
         itemLookUp.Add("WOOD_CHUNK", new Item("WOOD_CHUNK", "Chunk of Wood", Wood_Icon));
         itemLookUp.Add("TORCH", new Item("TORCH", "Torch", Torch_Icon));
         itemLookUp.Add("CANNON_BALL", new Item("CANNON_BALL", "Metal Ball", Ball_Icon));
@@ -62,6 +61,9 @@ public class InventoryController : MonoBehaviour {
         ItemSlot2.sprite = ((Item)items[1]).icon;
         ItemSlot3.sprite = ((Item)items[2]).icon;
         ItemSlot4.enabled = false;
+        MapSlot.enabled = false;
+        MapOverlay.enabled = false;
+        TutorialText.enabled = true;
         //ItemSlot4.sprite = ((Item)items[3]).icon;
         itemslots[0] = ItemSlot1;
         itemslots[1] = ItemSlot2;
@@ -94,10 +96,25 @@ public class InventoryController : MonoBehaviour {
         }
     }
 
+    public void EnableMap() {
+        MapSlot.enabled = true;
+    }
+
+    public void ShowMap() {
+        MapOverlay.enabled = true;
+    }
+
+    public void HideMap() {
+        MapOverlay.enabled = false;
+    }
+
     public void SelectItem(int itemkey)
     {
         selectedItem = (Item)items[wheelIndex + itemkey];
         text.text = "Use " + selectedItem.name;
+        if (TutorialText.enabled && selectedItem.id == "SPEAK") {
+            TutorialText.enabled = false;
+        }
     }
 
     public void DeselectItem()

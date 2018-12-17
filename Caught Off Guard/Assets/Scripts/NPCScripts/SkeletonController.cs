@@ -9,12 +9,15 @@ public class SkeletonController : MonoBehaviour
     public InventoryController Inventory;
     public GameObject normal;
     public GameObject pegleg;
+    public GameObject deadbones;
+    public GameObject Metal_Ball;
 
     private CharacterController charController;
     private Queue<string> dialog = new Queue<string>();
     private TextMesh text;
     private bool playerNear;
     private bool gaveLeg;
+    private bool dead;
 
     // Use this for initialization
     void Start () {
@@ -23,6 +26,8 @@ public class SkeletonController : MonoBehaviour
         text.text = "";
         normal.SetActive(true);
         pegleg.SetActive(false);
+        deadbones.SetActive(false);
+        Metal_Ball.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -34,22 +39,45 @@ public class SkeletonController : MonoBehaviour
         if (playerNear) {
             switch (action) {
                 case "WOOD_CHUNK":
-                    Inventory.DeselectItem();
-                    Inventory.RemoveItem("WOOD_CHUNK");
-                    Inventory.AddItem("BONE");
-                    Inventory.SetText("Got Bone");
-                    text.text = "<i>The skeleton excitedly takes the wood chunk\nand replaces it's own leg.\nIt seems happy.</i>";
-                    normal.SetActive(false);
-                    pegleg.SetActive(true);
-                    gaveLeg = true;
-                    LookAtObject(player);
+                    if (!dead) {
+                        Inventory.DeselectItem();
+                        Inventory.RemoveItem("WOOD_CHUNK");
+                        Inventory.AddItem("BONE");
+                        Inventory.SetText("Got Bone");
+                        text.text = "<i>The skeleton excitedly takes the wood chunk\nand replaces it's own leg.\nIt seems happy.</i>";
+                        normal.SetActive(false);
+                        pegleg.SetActive(true);
+                        gaveLeg = true;
+                        LookAtObject(player);
+                    }
                     break;
                 case "SPEAK":
-                    player.SendMessage("TakeControl");
-                    LookAtObject(player);
-                    AdvanceDialog();
+                    if (!dead) {
+                        player.SendMessage("TakeControl");
+                        LookAtObject(player);
+                        AdvanceDialog();
+                    }
+                    break;
+                case "GRAB":
+                    Inventory.DeselectItem();
+                    if (dead) {
+                        if (!gaveLeg) {
+                            Inventory.AddItem("BONE");
+                            Inventory.SetText("You got a Bone...");
+                            gaveLeg = true;
+                        }
+                        else {
+                            Inventory.SetText("You don't need another bone");
+                        }
+                    }
+                    else {
+                        Inventory.SetText("You can't do that right now");
+                    }
                     break;
             }
+        }
+        else {
+            Inventory.SetText("You are too far away for that");
         }
     }
 
@@ -65,8 +93,19 @@ public class SkeletonController : MonoBehaviour
 
     void UndetectPlayer() {
         playerNear = false;
-        LookAtObject(picture);
+        if (!dead) {
+            LookAtObject(picture);
+        }
         text.text = "";
+    }
+
+    public void Die() {
+        dead = true;
+        normal.SetActive(false);
+        pegleg.SetActive(false);
+        deadbones.SetActive(true);
+        Metal_Ball.SetActive(true);
+        Metal_Ball.SendMessage("CanReach");
     }
 
     private void AdvanceDialog() {

@@ -43,7 +43,6 @@ public class DogController : MonoBehaviour
             {
                 charController.SimpleMove(transform.forward * speed);
             }
-            transform.Rotate(90, 0, 0);
             charController.SimpleMove(Vector3.zero);
         }
         else {
